@@ -48,8 +48,8 @@ class RequestContextProxy(object):
     def __init__(self, wrapped_func, read_only=False):
         if not callable(wrapped_func):
             raise RequestContextProxyError.WrongWrappedFunc('wrapped_func must be callable')
-        self.__wrapped_func = wrapped_func
-        self.read_only = read_only
+        object.__setattr__(self, '_RequestContextProxy__wrapped_func', wrapped_func)
+        object.__setattr__(self, 'read_only', read_only)
 
     def _get_obj(self):
         obj = self.__wrapped_func()

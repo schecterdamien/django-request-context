@@ -7,7 +7,7 @@ import os
 import sys
 from shutil import rmtree
 
-from setuptools import setup, Command
+from setuptools import setup, Command, find_packages
 
 # Package meta-data.
 NAME = 'django-request-context'
@@ -17,7 +17,7 @@ URL = 'https://github.com/schecterdamien/django-request-context'
 EMAIL = 'schecterfirst@gmail.com'
 AUTHOR = 'wujinjing'
 KEYWORDS = "django request-context global-request"
-REQUIRES_PYTHON = '>2.7'
+REQUIRES_PYTHON = '>=3.4.1'
 VERSION = None
 
 REQUIRED = [
@@ -37,7 +37,7 @@ except FileNotFoundError:
 
 about = {}
 if not VERSION:
-    with open(os.path.join(here, NAME, '__version__.py')) as f:
+    with open(os.path.join(here, 'django_request_context', '__version__.py')) as f:
         exec(f.read(), about)
 else:
     about['__version__'] = VERSION
@@ -91,11 +91,7 @@ setup(
     keywords=KEYWORDS,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    py_modules=['django-request-context'],
-
-    # entry_points={
-    #     'console_scripts': ['mycli=mymodule:cli'],
-    # },
+    packages=find_packages(),
     install_requires=REQUIRED,
     include_package_data=True,
     license='MIT',
@@ -109,5 +105,5 @@ setup(
     ],
     cmdclass={
         'upload': UploadCommand,
-    },
+    }
 )
