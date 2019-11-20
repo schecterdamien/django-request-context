@@ -14,8 +14,8 @@ class RequestContext(object):
         try:
             getattr(self.__request_context, key)
         except AttributeError:
-            raise RequestContextError.ObjExisted('{} already exist, can\'t replace'.format(key))
-        return setattr(self.__request_context, key, value)
+            return setattr(self.__request_context, key, value)
+        raise RequestContextError.ObjExisted('{} already exist, can\'t replace'.format(key))
 
     def clear(self):
         return self.__request_context.__dict__.clear()
